@@ -6,4 +6,24 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Services\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Abp" Version="8.2.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\src\Zero.Application.Shared\Zero.Application.Shared.csproj" />
+      <ProjectReference Include="..\..\..\src\Zero.Application\Zero.Application.csproj" />
+      <ProjectReference Include="..\..\..\src\Zero.Core.Shared\Zero.Core.Shared.csproj" />
+      <ProjectReference Include="..\..\..\src\Zero.Core\Zero.Core.csproj" />
+      <ProjectReference Include="..\..\..\src\Zero.EntityFrameworkCore\Zero.EntityFrameworkCore.csproj" />
+      <ProjectReference Include="..\..\..\src\Zero.Web.Core\Zero.Web.Core.csproj" />
+      <ProjectReference Include="..\CCB.Application.Shared\CCB.Application.Shared.csproj" />
+      <ProjectReference Include="..\CCB.Core.Shared\CCB.Core.Shared.csproj" />
+      <ProjectReference Include="..\CCB.Core\CCB.Core.csproj" />
+    </ItemGroup>
+
 </Project>
