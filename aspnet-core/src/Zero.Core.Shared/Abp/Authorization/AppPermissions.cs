@@ -108,9 +108,11 @@
 
     public static class CCBPermissions
     {
-        public const string PostCategory = "Ecommerce.PostCategory";
-        public const string PostCategory_Create = "Ecommerce.PostCategory.Create";
-        public const string PostCategory_Edit = "Ecommerce.PostCategory.Edit";
-        public const string PostCategory_Delete = "Ecommerce.PostCategory.Delete";
+        public const string CCBSettings = "CCB.Settings";
+        
+        public const string PostCategory = "CCB.PostCategory";
+        public const string PostCategory_Create = "CCB.PostCategory.Create";
+        public const string PostCategory_Edit = "CCB.PostCategory.Edit";
+        public const string PostCategory_Delete = "CCB.PostCategory.Delete";
     }
 }

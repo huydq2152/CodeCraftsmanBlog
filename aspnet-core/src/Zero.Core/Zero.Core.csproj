@@ -33,7 +33,7 @@
     <EmbeddedResource Include="Abp\Localization\Zero\Zero-zh-Hans.xml" />
     <EmbeddedResource Include="Abp\Localization\Zero\Zero.xml" />
     <EmbeddedResource Include="Abp\Net\Emailing\EmailTemplates\default.html" />
-    <EmbeddedResource Include="Localization\Zero\*.xml;Net\Emailing\EmailTemplates\default.html" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
+    <EmbeddedResource Include="Abp\Localization\Zero\*.xml;Abp\Net\Emailing\EmailTemplates\default.html" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
   </ItemGroup>
 
   <ItemGroup>

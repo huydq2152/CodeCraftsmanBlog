@@ -48,6 +48,7 @@ using Zero.Net.Emailing;
 using Zero.Notifications;
 using Zero.WebHooks;
 using Newtonsoft.Json;
+using Zero.Abp.Localization;
 
 namespace Zero
 {

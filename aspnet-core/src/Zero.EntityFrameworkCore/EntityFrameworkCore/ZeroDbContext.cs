@@ -41,7 +41,7 @@ namespace Zero.EntityFrameworkCore
 
         #region CCB
 
-        public virtual DbSet<PostCategory> UserShippingAddress { get; set; }
+        public virtual DbSet<PostCategory> PostCategories { get; set; }
 
         #endregion
 
@@ -97,6 +97,26 @@ namespace Zero.EntityFrameworkCore
                 b.HasIndex(e => new { e.TenantId, e.SourceUserId });
                 b.HasIndex(e => new { e.TenantId, e.TargetUserId });
             });
+            
+            modelBuilder.Entity<SubscribableEdition>()
+                .Property(x => x.AnnualPrice)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<SubscribableEdition>()
+                .Property(x => x.DailyPrice)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<SubscribableEdition>()
+                .Property(x => x.MonthlyPrice)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<SubscribableEdition>()
+                .Property(x => x.WeeklyPrice)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<SubscriptionPayment>()
+                .Property(x => x.Amount)
+                .HasColumnType("decimal(18,2)");
         }
     }
 }

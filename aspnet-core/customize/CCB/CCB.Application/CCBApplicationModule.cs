@@ -6,22 +6,19 @@ using CCB.Core;
 
 namespace CCB.Application;
 
-public class CCBApplicationModule
+/// <summary>
+/// Application layer module of the application.
+/// </summary>
+[DependsOn(typeof(CCBApplicationSharedModule), typeof(CCBCoreModule))]
+public class CCBApplicationModule : AbpModule
 {
-    /// <summary>
-    /// Application layer module of the application.
-    /// </summary>
-    [DependsOn(typeof(CCBApplicationSharedModule), typeof(CCBCoreModule))]
-    public class EcommerceApplicationModule : AbpModule
+    public override void PreInitialize()
     {
-        public override void PreInitialize()
-        {
-            Configuration.Modules.AbpAutoMapper().Configurators.Add(CustomDtoMapper.CreateMappings);
-        }
+        Configuration.Modules.AbpAutoMapper().Configurators.Add(CustomDtoMapper.CreateMappings);
+    }
 
-        public override void Initialize()
-        {
-            IocManager.RegisterAssemblyByConvention(typeof(EcommerceApplicationModule).GetAssembly());
-        }
+    public override void Initialize()
+    {
+        IocManager.RegisterAssemblyByConvention(typeof(CCBApplicationModule).GetAssembly());
     }
 }

@@ -3,23 +3,20 @@ using Abp.Domain.Entities.Auditing;
 
 namespace Zero.Customize.Base;
 
-public class SimpleFullAuditedEntity
+public class SimpleFullAuditedEntity : FullAuditedEntity
 {
-    public class SimpleEntity : FullAuditedEntity
-    {
-        [StringLength(ZeroConst.MaxCodeLength)]
-        public string Code { get; set; }
+    [StringLength(ZeroConst.MaxCodeLength)]
+    public string Code { get; set; }
 
-        [Required]
-        [StringLength(ZeroConst.MaxNameLength, MinimumLength = ZeroConst.MinNameLength)]
-        public string Name { get; set; }
+    [Required]
+    [StringLength(ZeroConst.MaxNameLength, MinimumLength = ZeroConst.MinNameLength)]
+    public string Name { get; set; }
 
-        public string Note { get; set; }
-        
-        public int Order { get; set; }
-        
-        public bool IsDefault { get; set; }
-        
-        public bool IsActive { get; set; }
-    }
+    public string Note { get; set; }
+
+    public int Order { get; set; }
+
+    public bool IsDefault { get; set; }
+
+    public bool IsActive { get; set; }
 }

@@ -126,7 +126,7 @@ namespace Zero.Authorization
 
             #region CCB
 
-            var ccbSetting = pages.CreateChildPermission(CCBPermissions.PostCategory, L("PostCategory"));
+            var ccbSetting = pages.CreateChildPermission(CCBPermissions.CCBSettings, L("CCB"));
             var supplier = ccbSetting.CreateChildPermission(CCBPermissions.PostCategory, L("PostCategory"));
             supplier.CreateChildPermission(CCBPermissions.PostCategory_Create, L("Create"));
             supplier.CreateChildPermission(CCBPermissions.PostCategory_Edit, L("Edit"));
