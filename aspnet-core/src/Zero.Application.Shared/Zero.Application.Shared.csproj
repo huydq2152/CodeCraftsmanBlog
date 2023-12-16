@@ -15,4 +15,9 @@
     <ProjectReference Include="..\Zero.Core.Shared\Zero.Core.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Abp\" />
+    <Folder Include="Customize\" />
+  </ItemGroup>
+
 </Project>

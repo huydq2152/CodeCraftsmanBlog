@@ -17,6 +17,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Abp\Localization\Zero\Zero-ar.xml" />
+    <EmbeddedResource Include="Abp\Localization\Zero\Zero-de.xml" />
+    <EmbeddedResource Include="Abp\Localization\Zero\Zero-en-GB.xml" />
+    <EmbeddedResource Include="Abp\Localization\Zero\Zero-es-MX.xml" />
+    <EmbeddedResource Include="Abp\Localization\Zero\Zero-es.xml" />
+    <EmbeddedResource Include="Abp\Localization\Zero\Zero-fr.xml" />
+    <EmbeddedResource Include="Abp\Localization\Zero\Zero-it.xml" />
+    <EmbeddedResource Include="Abp\Localization\Zero\Zero-nl.xml" />
+    <EmbeddedResource Include="Abp\Localization\Zero\Zero-pt-BR.xml" />
+    <EmbeddedResource Include="Abp\Localization\Zero\Zero-ru.xml" />
+    <EmbeddedResource Include="Abp\Localization\Zero\Zero-th.xml" />
+    <EmbeddedResource Include="Abp\Localization\Zero\Zero-tr.xml" />
+    <EmbeddedResource Include="Abp\Localization\Zero\Zero-vi.xml" />
+    <EmbeddedResource Include="Abp\Localization\Zero\Zero-zh-Hans.xml" />
+    <EmbeddedResource Include="Abp\Localization\Zero\Zero.xml" />
+    <EmbeddedResource Include="Abp\Net\Emailing\EmailTemplates\default.html" />
     <EmbeddedResource Include="Localization\Zero\*.xml;Net\Emailing\EmailTemplates\default.html" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
   </ItemGroup>
 

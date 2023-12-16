@@ -330,7 +330,7 @@ namespace Zero.Web.UiCustomization.Metronic
             if (settings.Menu.AllowAsideMinimizing && !settings.Menu.HoverableAside)
             {
                 throw new UserFriendlyException(
-                    _localizationManager.GetSource(ZeroConsts.LocalizationSourceName)
+                    _localizationManager.GetSource(ZeroConst.LocalizationSourceName)
                         .GetString("AllowAsideMinimizing_HoverableAside_Warning")
                 );
             }

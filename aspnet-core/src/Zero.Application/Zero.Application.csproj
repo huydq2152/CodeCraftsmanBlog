@@ -28,4 +28,9 @@
     <ProjectReference Include="..\Zero.EntityFrameworkCore\Zero.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Abp\" />
+    <Folder Include="Customize\" />
+  </ItemGroup>
+
 </Project>

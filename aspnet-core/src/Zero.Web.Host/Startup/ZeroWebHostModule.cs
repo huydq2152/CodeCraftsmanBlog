@@ -16,6 +16,7 @@ using Abp.Threading.BackgroundWorkers;
 using Abp.Timing;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Zero.Abp.Auditing;
 using Zero.Auditing;
 using Zero.Authorization.Users.Password;
 using Zero.Configuration;

@@ -179,7 +179,7 @@ namespace Zero.Web.Startup
 
             app.UseStaticFiles();
 
-            if (ZeroConsts.PreventNotExistingTenantSubdomains)
+            if (ZeroConst.PreventNotExistingTenantSubdomains)
             {
                 app.UseMiddleware<DomainTenantCheckMiddleware>();
             }

@@ -1,4 +1,5 @@
 ﻿using Abp.Zero.EntityFrameworkCore;
+using CCB.Core.PostCategory;
 using Microsoft.EntityFrameworkCore;
 using Zero.Authorization.Delegation;
 using Zero.Authorization.Roles;
@@ -15,7 +16,7 @@ namespace Zero.EntityFrameworkCore
 {
     public class ZeroDbContext : AbpZeroDbContext<Tenant, Role, User, ZeroDbContext>
     {
-        /* Define an IDbSet for each entity of the application */
+        #region Zero
 
         public virtual DbSet<BinaryObject> BinaryObjects { get; set; }
 
@@ -33,23 +34,27 @@ namespace Zero.EntityFrameworkCore
         public virtual DbSet<SubscriptionPaymentExtensionData> SubscriptionPaymentExtensionDatas { get; set; }
 
         public virtual DbSet<UserDelegation> UserDelegations { get; set; }
-        
+
         public virtual DbSet<RecentPassword> RecentPasswords { get; set; }
+
+        #endregion
+
+        #region CCB
+
+        public virtual DbSet<PostCategory> UserShippingAddress { get; set; }
+
+        #endregion
 
         public ZeroDbContext(DbContextOptions<ZeroDbContext> options)
             : base(options)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<BinaryObject>(b =>
-            {
-                b.HasIndex(e => new { e.TenantId });
-            });
+            modelBuilder.Entity<BinaryObject>(b => { b.HasIndex(e => new { e.TenantId }); });
 
             modelBuilder.Entity<ChatMessage>(b =>
             {

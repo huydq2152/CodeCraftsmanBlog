@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\customize\CCB\CCB.Core\CCB.Core.csproj" />
     <ProjectReference Include="..\Zero.Core\Zero.Core.csproj" />
   </ItemGroup>
 
