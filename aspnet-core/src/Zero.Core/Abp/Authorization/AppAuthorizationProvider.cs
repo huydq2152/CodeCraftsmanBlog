@@ -126,11 +126,11 @@ namespace Zero.Authorization
 
             #region CCB
 
-            var ccbSetting = pages.CreateChildPermission(CCBPermissions.CCBSettings, L("CCB"));
-            var supplier = ccbSetting.CreateChildPermission(CCBPermissions.PostCategory, L("PostCategory"));
-            supplier.CreateChildPermission(CCBPermissions.PostCategory_Create, L("Create"));
-            supplier.CreateChildPermission(CCBPermissions.PostCategory_Edit, L("Edit"));
-            supplier.CreateChildPermission(CCBPermissions.PostCategory_Delete, L("Delete"));
+            var postMenuGroup = pages.CreateChildPermission(CCBPermissions.PostMenuGroup, L("PostMenuGroup"));
+            var postCategory = postMenuGroup.CreateChildPermission(CCBPermissions.PostCategory, L("PostCategory"));
+            postCategory.CreateChildPermission(CCBPermissions.PostCategory_Create, L("Create"));
+            postCategory.CreateChildPermission(CCBPermissions.PostCategory_Edit, L("Edit"));
+            postCategory.CreateChildPermission(CCBPermissions.PostCategory_Delete, L("Delete"));
 
             #endregion
         }

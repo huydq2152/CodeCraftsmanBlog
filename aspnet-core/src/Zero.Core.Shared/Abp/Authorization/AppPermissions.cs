@@ -108,7 +108,7 @@
 
     public static class CCBPermissions
     {
-        public const string CCBSettings = "CCB.Settings";
+        public const string PostMenuGroup = "CCB.PostMenuGroup";
         
         public const string PostCategory = "CCB.PostCategory";
         public const string PostCategory_Create = "CCB.PostCategory.Create";

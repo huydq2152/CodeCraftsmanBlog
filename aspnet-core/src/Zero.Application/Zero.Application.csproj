@@ -30,7 +30,6 @@
 
   <ItemGroup>
     <Folder Include="Abp\" />
-    <Folder Include="Customize\" />
   </ItemGroup>
 
 </Project>

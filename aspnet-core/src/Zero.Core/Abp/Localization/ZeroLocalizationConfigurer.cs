@@ -14,7 +14,7 @@ namespace Zero.Abp.Localization
                     ZeroConst.LocalizationSourceName,
                     new XmlEmbeddedFileLocalizationDictionaryProvider(
                         typeof(ZeroLocalizationConfigurer).GetAssembly(),
-                        "Zero.Localization.Zero"
+                        "Zero.Abp.Localization.Zero"
                     )
                 )
             );

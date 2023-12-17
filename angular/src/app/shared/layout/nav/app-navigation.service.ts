@@ -10,7 +10,7 @@ export class AppNavigationService {
     constructor(
         private _permissionCheckerService: PermissionCheckerService,
         private _appSessionService: AppSessionService
-    ) { }
+    ) {}
 
     getMenu(): AppMenu {
         return new AppMenu('MainMenu', 'MainMenu', [
@@ -21,6 +21,14 @@ export class AppNavigationService {
                 '/app/admin/hostDashboard'
             ),
             new AppMenuItem('Dashboard', 'Pages.Tenant.Dashboard', 'flaticon-line-graph', '/app/main/dashboard'),
+            new AppMenuItem(
+                'Post',
+                'CCB.PostMenuGroup',
+                'flaticon-menu-3',
+                '',
+                [],
+                [new AppMenuItem('PostCategory', 'CCB.PostCategory', 'flaticon2-line', '/app/main/postcategory')]
+            ),
             new AppMenuItem('Tenants', 'Pages.Tenants', 'flaticon-list-3', '/app/admin/tenants'),
             new AppMenuItem('Editions', 'Pages.Editions', 'flaticon-app', '/app/admin/editions'),
             new AppMenuItem(
@@ -100,20 +108,15 @@ export class AppNavigationService {
                         '',
                         [],
                         [
-                            new AppMenuItem(
-                                'Inbox',
-                                '',
-                                'flaticon-mail-1',
-                                '/app/notifications'
-                            ),
+                            new AppMenuItem('Inbox', '', 'flaticon-mail-1', '/app/notifications'),
                             new AppMenuItem(
                                 'MassNotifications',
                                 'Pages.Administration.MassNotification',
                                 'flaticon-paper-plane',
                                 '/app/admin/mass-notifications'
-                            )
+                            ),
                         ]
-                    )
+                    ),
                 ]
             ),
             new AppMenuItem(
@@ -137,7 +140,7 @@ export class AppNavigationService {
                 if (!subMenuItem.hasFeatureDependency()) {
                     return true;
                 }
-                
+
                 if (subMenuItem.featureDependencySatisfied()) {
                     return true;
                 }

@@ -7,14 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Services\Common\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="Abp" Version="8.2.0" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\src\Zero.Application\Zero.Application.csproj" />
       <ProjectReference Include="..\CCB.Application.Shared\CCB.Application.Shared.csproj" />
       <ProjectReference Include="..\CCB.Core\CCB.Core.csproj" />
     </ItemGroup>
