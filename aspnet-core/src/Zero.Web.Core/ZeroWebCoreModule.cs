@@ -42,6 +42,7 @@ using Zero.Web.DashboardCustomization;
 using Abp.Extensions;
 using Abp.HtmlSanitizer;
 using Abp.HtmlSanitizer.Configuration;
+using CCB.Application;
 using Zero.Authorization.Accounts;
 
 namespace Zero.Web
@@ -54,7 +55,8 @@ namespace Zero.Web
         typeof(ZeroGraphQLModule),
         typeof(AbpRedisCacheModule), //AbpRedisCacheModule dependency (and Abp.RedisCache nuget package) can be removed if not using Redis cache
         typeof(AbpHangfireAspNetCoreModule), //AbpHangfireModule dependency (and Abp.Hangfire.AspNetCore nuget package) can be removed if not using Hangfire
-        typeof(AbpHtmlSanitizerModule)
+        typeof(AbpHtmlSanitizerModule),
+        typeof(CCBApplicationModule)
     )]
     public class ZeroWebCoreModule : AbpModule
     {
@@ -80,6 +82,11 @@ namespace Zero.Web
             Configuration.Modules.AbpAspNetCore()
                 .CreateControllersForAppServices(
                     typeof(ZeroApplicationModule).GetAssembly()
+                );
+            
+            Configuration.Modules.AbpAspNetCore()
+                .CreateControllersForAppServices(
+                    typeof(CCBApplicationModule).GetAssembly()
                 );
 
             Configuration.Caching.Configure(TwoFactorCodeCacheItem.CacheName,

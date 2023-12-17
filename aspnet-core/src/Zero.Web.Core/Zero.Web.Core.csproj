@@ -17,6 +17,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\customize\CCB\CCB.Application\CCB.Application.csproj" />
 		<ProjectReference Include="..\Zero.GraphQL\Zero.GraphQL.csproj" />
 		<ProjectReference Include="..\Zero.Application\Zero.Application.csproj" />
 		<ProjectReference Include="..\Zero.EntityFrameworkCore\Zero.EntityFrameworkCore.csproj" />
