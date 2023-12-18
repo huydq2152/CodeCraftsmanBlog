@@ -3,6 +3,7 @@
     <texts>
         <!--  Customize  -->
         <text name="Create">Tạo mới</text>
+        <text name="IsActive">Kích hoạt</text>
         
         <text name="PostMenuGroup">Menu bài viết</text>
         <text name="PostCategory">Loại bài viết</text>

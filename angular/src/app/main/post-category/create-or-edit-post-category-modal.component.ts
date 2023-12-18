@@ -1,9 +1,6 @@
 import { Component, EventEmitter, Injector, Output, ViewChild } from '@angular/core';
 import { AppComponentBase } from '@shared/common/app-component-base';
-import {
-    CreateOrEditPostCategoryDto,
-    PostCategoryServiceProxy,
-} from '@shared/service-proxies/service-proxies';
+import { CreateOrEditPostCategoryDto, PostCategoryServiceProxy } from '@shared/service-proxies/service-proxies';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { finalize } from 'rxjs';
 

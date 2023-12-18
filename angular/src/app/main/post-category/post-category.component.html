@@ -73,22 +73,15 @@
                                             <ul id="dropdownMenu" class="dropdown-menu" role="menu" *dropdownMenu
                                                 aria-labelledby="dropdownButton">
                                                 <li *ngIf="'CCB.PostCategory.Edit' | permission" role="menuitem">
-                                                    <a
-                                                        href="javascript:;"
-                                                        class="dropdown-item"
-                                                        (click)="
+                                                    <a href="javascript:;" class="dropdown-item" (click)="
                                                             createOrEditPostCategoryModal.show(record.postCategory)
-                                                        "
-                                                    >
+                                                        ">
                                                         {{ 'Edit' | localize }}
                                                     </a>
                                                 </li>
                                                 <li *ngIf="'CCB.PostCategory.Delete' | permission" role="menuitem">
-                                                    <a
-                                                        href="javascript:;"
-                                                        class="dropdown-item"
-                                                        (click)="deletePostCategory(record.postCategory)"
-                                                    >
+                                                    <a href="javascript:;" class="dropdown-item"
+                                                        (click)="deletePostCategory(record.postCategory)">
                                                         {{ 'Delete' | localize }}
                                                     </a>
                                                 </li>
@@ -135,5 +128,6 @@
             </div>
         </div>
     </div>
-    <createOrEditPostCategoryModal #createOrEditPostCategoryModal (modalSave)="getAll()"></createOrEditPostCategoryModal>
+    <createOrEditPostCategoryModal #createOrEditPostCategoryModal (modalSave)="getAll()">
+    </createOrEditPostCategoryModal>
 </div>

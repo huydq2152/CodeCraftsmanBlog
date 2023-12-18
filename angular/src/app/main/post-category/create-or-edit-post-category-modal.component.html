@@ -14,19 +14,38 @@
                         [disabled]="saving"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-5 col-12">
-                        <div class="mb-5">
-                            <label class="form-label">{{ 'Code' | localize }} *</label>
-                            <input id="Code" #codeInput="ngModel" class="form-control" type="text" name="Code"
+                    <div class="row mb-5">
+                        <div class="col-10">
+                            <label class="form-label">{{ 'Code' | localize }} <span class="text-danger">*</span></label>
+                            <input class="form-control" id="Code" #codeInput="ngModel" type="text" name="Code"
                                 [(ngModel)]="postCategory.code" required />
                             <validation-messages [formCtrl]="codeInput"></validation-messages>
                         </div>
-                        <div class="mb-5">
-                            <label class="form-label">{{ 'Name' | localize }} *</label>
-                            <input id="Name" #nameInput="ngModel" class="form-control" type="text" name="Name"
+                        <div class="col-2">
+                            <label class="form-label">{{ 'IsActive' | localize }} <span
+                                    class="text-danger">*</span></label>
+                            <div class="d-flex align-items-center">
+                                <p-inputSwitch id="IsActive" [(ngModel)]="postCategory.isActive"
+                                    name="IsActive"></p-inputSwitch>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-12">
+                            <label class="form-label">{{ 'Name' | localize }} <span class="text-danger">*</span></label>
+                            <input class="form-control" id="Name" #nameInput="ngModel" type="text" name="Name"
                                 [(ngModel)]="postCategory.name" required />
                             <validation-messages [formCtrl]="nameInput"></validation-messages>
                         </div>
+                    </div>
+                    <div class="row mb-5">
+                        <label for="Parent" class="col-lg-12 form-label">{{'PostCategory' | localize}}</label>
+                        <!-- <div class="col-lg-10 col-md-9 col-sm-8">
+                            <p-autoComplete [(ngModel)]="postCategory.parentId" id="Parent"
+                                [suggestions]="filteredPostCategories" (completeMethod)="filterPostCategories($event)"
+                                field="name" placeholder="{{'PostCategories' | localize}}" [minLength]="1" name="Parent"
+                                inputStyleClass="form-control" styleClass="w-100"></p-autoComplete>
+                        </div> -->
                     </div>
                 </div>
                 <div class="modal-footer">
