@@ -17266,8 +17266,6 @@ export class CreateOrEditPostCategoryDto implements ICreateOrEditPostCategoryDto
     code!: string;
     name!: string;
     note!: string | undefined;
-    order!: number;
-    isDefault!: boolean;
     isActive!: boolean;
     isDeleted!: boolean;
     deleterUserId!: number | undefined;
@@ -17296,8 +17294,6 @@ export class CreateOrEditPostCategoryDto implements ICreateOrEditPostCategoryDto
             this.code = _data["code"];
             this.name = _data["name"];
             this.note = _data["note"];
-            this.order = _data["order"];
-            this.isDefault = _data["isDefault"];
             this.isActive = _data["isActive"];
             this.isDeleted = _data["isDeleted"];
             this.deleterUserId = _data["deleterUserId"];
@@ -17326,8 +17322,6 @@ export class CreateOrEditPostCategoryDto implements ICreateOrEditPostCategoryDto
         data["code"] = this.code;
         data["name"] = this.name;
         data["note"] = this.note;
-        data["order"] = this.order;
-        data["isDefault"] = this.isDefault;
         data["isActive"] = this.isActive;
         data["isDeleted"] = this.isDeleted;
         data["deleterUserId"] = this.deleterUserId;
@@ -17349,8 +17343,6 @@ export interface ICreateOrEditPostCategoryDto {
     code: string;
     name: string;
     note: string | undefined;
-    order: number;
-    isDefault: boolean;
     isActive: boolean;
     isDeleted: boolean;
     deleterUserId: number | undefined;
@@ -25993,8 +25985,6 @@ export class PostCategoryDto implements IPostCategoryDto {
     code!: string;
     name!: string;
     note!: string | undefined;
-    order!: number;
-    isDefault!: boolean;
     isActive!: boolean;
     isDeleted!: boolean;
     deleterUserId!: number | undefined;
@@ -26023,8 +26013,6 @@ export class PostCategoryDto implements IPostCategoryDto {
             this.code = _data["code"];
             this.name = _data["name"];
             this.note = _data["note"];
-            this.order = _data["order"];
-            this.isDefault = _data["isDefault"];
             this.isActive = _data["isActive"];
             this.isDeleted = _data["isDeleted"];
             this.deleterUserId = _data["deleterUserId"];
@@ -26053,8 +26041,6 @@ export class PostCategoryDto implements IPostCategoryDto {
         data["code"] = this.code;
         data["name"] = this.name;
         data["note"] = this.note;
-        data["order"] = this.order;
-        data["isDefault"] = this.isDefault;
         data["isActive"] = this.isActive;
         data["isDeleted"] = this.isDeleted;
         data["deleterUserId"] = this.deleterUserId;
@@ -26076,8 +26062,6 @@ export interface IPostCategoryDto {
     code: string;
     name: string;
     note: string | undefined;
-    order: number;
-    isDefault: boolean;
     isActive: boolean;
     isDeleted: boolean;
     deleterUserId: number | undefined;

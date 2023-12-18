@@ -24,10 +24,10 @@ export class AppNavigationService {
             new AppMenuItem(
                 'Post',
                 'CCB.PostMenuGroup',
-                'flaticon-menu-3',
+                'flaticon-line-graph',
                 '',
                 [],
-                [new AppMenuItem('PostCategory', 'CCB.PostCategory', 'flaticon2-line', '/app/main/postcategory')]
+                [new AppMenuItem('PostCategory', 'CCB.PostCategory', 'flaticon-line-graph', '/app/main/postcategory')]
             ),
             new AppMenuItem('Tenants', 'Pages.Tenants', 'flaticon-list-3', '/app/admin/tenants'),
             new AppMenuItem('Editions', 'Pages.Editions', 'flaticon-app', '/app/admin/editions'),

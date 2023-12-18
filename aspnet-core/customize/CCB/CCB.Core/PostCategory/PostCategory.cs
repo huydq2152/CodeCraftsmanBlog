@@ -9,7 +9,6 @@ namespace CCB.Core.PostCategory;
 public class PostCategory : SimpleFullAuditedEntity, IMayHaveTenant
 {
     public int? TenantId { get; set; }
-    
     public int? ParentId { get; set; }
     [ForeignKey("ParentId")]
     public virtual PostCategory? Parent { get; set; }

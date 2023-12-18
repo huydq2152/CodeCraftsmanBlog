@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Zero.Migrations
 {
     /// <inheritdoc />
-    public partial class Add_CCB_Post_Category : Migration
+    public partial class CCB_Post_Category : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -29,8 +29,6 @@ namespace Zero.Migrations
                     Code = table.Column<string>(type: "nvarchar(95)", maxLength: 95, nullable: true),
                     Name = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: false),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Order = table.Column<int>(type: "int", nullable: false),
-                    IsDefault = table.Column<bool>(type: "bit", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>

@@ -12,8 +12,8 @@ using Zero.EntityFrameworkCore;
 namespace Zero.Migrations
 {
     [DbContext(typeof(ZeroDbContext))]
-    [Migration("20231216031312_Add_CCB_Post_Category")]
-    partial class Add_CCB_Post_Category
+    [Migration("20231218100109_CCB_Post_Category")]
+    partial class CCB_Post_Category
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1410,9 +1410,6 @@ namespace Zero.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsDefault")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -1429,9 +1426,6 @@ namespace Zero.Migrations
 
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Order")
-                        .HasColumnType("int");
 
                     b.Property<int?>("ParentId")
                         .HasColumnType("int");

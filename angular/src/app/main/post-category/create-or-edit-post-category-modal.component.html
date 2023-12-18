@@ -1,0 +1,44 @@
+<div appBsModal #createOrEditModal="bs-modal" (onShown)="onShown()"
+    class="modal fade create-or-edit-post-category-modal" tabindex="-1" role="dialog"
+    aria-labelledby="createOrEditModal" aria-hidden="true" [config]="{ backdrop: 'static', keyboard: !saving }">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form *ngIf="active" #postCategoryForm="ngForm" novalidate (ngSubmit)="save()">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="postCategory.id">{{ 'Edit' | localize }}: {{ postCategory.code
+                            }} - {{postCategory.name}}</span>
+                        <span *ngIf="!postCategory.id">{{ 'CreatePostCategory' | localize }}</span>
+                    </h4>
+                    <button type="button" class="btn-close" (click)="close()" [attr.aria-label]="l('Close')"
+                        [disabled]="saving"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-5 col-12">
+                        <div class="mb-5">
+                            <label class="form-label">{{ 'Code' | localize }} *</label>
+                            <input id="Code" #codeInput="ngModel" class="form-control" type="text" name="Code"
+                                [(ngModel)]="postCategory.code" required />
+                            <validation-messages [formCtrl]="codeInput"></validation-messages>
+                        </div>
+                        <div class="mb-5">
+                            <label class="form-label">{{ 'Name' | localize }} *</label>
+                            <input id="Name" #nameInput="ngModel" class="form-control" type="text" name="Name"
+                                [(ngModel)]="postCategory.name" required />
+                            <validation-messages [formCtrl]="nameInput"></validation-messages>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-light-primary fw-bold" (click)="close()">
+                        {{ 'Cancel' | localize }}
+                    </button>
+                    <button type="submit" class="btn btn-primary fw-bold" [disabled]="!postCategoryForm.form.valid"
+                        [buttonBusy]="saving" [busyText]="l('SavingWithThreeDot')">
+                        <i class="fa fa-save"></i>
+                        <span>{{ 'Save' | localize }}</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>

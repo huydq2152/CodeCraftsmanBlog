@@ -182,9 +182,7 @@ export class UsersComponent extends AppComponentBase implements AfterViewInit {
     }
 
     showDynamicProperties(user: UserListDto): void {
-        this.dynamicEntityPropertyManager
-            .getModal()
-            .show('Zero.Authorization.Users.User', user.id.toString());
+        this.dynamicEntityPropertyManager.getModal().show('Zero.Authorization.Users.User', user.id.toString());
     }
 
     setUsersProfilePictureUrl(users: UserListDto[]): void {

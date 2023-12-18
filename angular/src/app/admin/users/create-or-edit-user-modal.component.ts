@@ -22,7 +22,7 @@ import { finalize } from 'rxjs/operators';
     selector: 'createOrEditUserModal',
     templateUrl: './create-or-edit-user-modal.component.html',
     encapsulation: ViewEncapsulation.None,
-    styleUrls: ['create-or-edit-user-modal.component.less']
+    styleUrls: ['create-or-edit-user-modal.component.less'],
 })
 export class CreateOrEditUserModalComponent extends AppComponentBase {
     @ViewChild('createOrEditModal', { static: true }) modal: ModalDirective;
