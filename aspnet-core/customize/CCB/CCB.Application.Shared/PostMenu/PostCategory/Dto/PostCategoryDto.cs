@@ -1,6 +1,6 @@
 ﻿using Zero.Customize.BaseDto;
 
-namespace CCB.Application.Shared.Post.PostCategory.Dto;
+namespace CCB.Application.Shared.PostMenu.PostCategory.Dto;
 
 public class PostCategoryDto: SimpleFullAuditedEntityDto
 {

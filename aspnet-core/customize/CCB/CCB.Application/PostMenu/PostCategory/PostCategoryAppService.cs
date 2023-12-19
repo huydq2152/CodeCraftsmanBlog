@@ -4,13 +4,13 @@ using Abp.Authorization;
 using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
 using Abp.UI;
-using CCB.Application.Shared.Post.PostCategory;
-using CCB.Application.Shared.Post.PostCategory.Dto;
+using CCB.Application.Shared.PostMenu.PostCategory;
+using CCB.Application.Shared.PostMenu.PostCategory.Dto;
 using Microsoft.EntityFrameworkCore;
 using Zero;
 using Zero.Authorization;
 
-namespace CCB.Application.PostCategory;
+namespace CCB.Application.PostMenu.PostCategory;
 
 [AbpAuthorize(CCBPermissions.PostCategory)]
 public class PostCategoryAppService : ZeroAppServiceBase, IPostCategoryAppService
@@ -146,7 +146,7 @@ public class PostCategoryAppService : ZeroAppServiceBase, IPostCategoryAppServic
 
     public async Task Delete(EntityDto input)
     {
-        var obj = _postCategoryRepository.FirstOrDefaultAsync(
+        var obj = await _postCategoryRepository.FirstOrDefaultAsync(
             o => o.TenantId == AbpSession.TenantId && o.Id == input.Id);
         if (obj == null) throw new UserFriendlyException(L("Error"), L("EntityNotFound"));
         await _postCategoryRepository.DeleteAsync(obj.Id);

@@ -74,4 +74,13 @@
         private const int MaxDepth = 16;
         #endregion
     }
+    
+    public class FrontPagePrefix
+    {
+        #region Post
+        
+        public const string PostDetail = "/bai-viet/";
+        
+        #endregion
+    }
 }

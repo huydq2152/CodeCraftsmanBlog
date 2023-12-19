@@ -27,7 +27,15 @@ export class AppNavigationService {
                 'flaticon-line-graph',
                 '',
                 [],
-                [new AppMenuItem('PostCategory', 'CCB.PostCategory', 'flaticon-line-graph', '/app/main/postcategory')]
+                [
+                    new AppMenuItem(
+                        'PostCategory',
+                        'CCB.PostCategory',
+                        'flaticon-line-graph',
+                        '/app/main/postcategory'
+                    ),
+                    new AppMenuItem('Post', 'CCB.Post', 'flaticon-line-graph', '/app/main/post'),
+                ]
             ),
             new AppMenuItem('Tenants', 'Pages.Tenants', 'flaticon-list-3', '/app/admin/tenants'),
             new AppMenuItem('Editions', 'Pages.Editions', 'flaticon-app', '/app/admin/editions'),

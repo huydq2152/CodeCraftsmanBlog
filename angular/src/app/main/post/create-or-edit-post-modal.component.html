@@ -1,0 +1,99 @@
+<div appBsModal #createOrEditModal="bs-modal" (onShown)="onShown()" class="modal fade create-or-edit-post--modal"
+    tabindex="-1" role="dialog" aria-labelledby="createOrEditModal" aria-hidden="true"
+    [config]="{ backdrop: 'static', keyboard: !saving }">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form *ngIf="active" #postForm="ngForm" novalidate (ngSubmit)="save()">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="post.id">{{ 'Edit' | localize }}: {{ post.code
+                            }} - {{post.name}}</span>
+                        <span *ngIf="!post.id">{{ 'Create' | localize }}</span>
+                    </h4>
+                    <button type="button" class="btn-close" (click)="close()" [attr.aria-label]="l('Close')"
+                        [disabled]="saving"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-5">
+                        <div class="col-10">
+                            <label for="Code" class="form-label">{{ 'Code' | localize }} <span
+                                    class="text-danger">*</span></label>
+                            <input class="form-control" id="Code" #codeInput="ngModel" type="text" name="Code"
+                                [(ngModel)]="post.code" required (input)="updateSlug()" />
+                            <validation-messages [formCtrl]="codeInput"></validation-messages>
+                        </div>
+                        <div class="col-2">
+                            <label for="IsActive" class="form-label">{{ 'IsActive' | localize }} <span
+                                    class="text-danger">*</span></label>
+                            <div class="d-flex align-items-center">
+                                <p-inputSwitch id="IsActive" [(ngModel)]="post.isActive"
+                                    name="IsActive"></p-inputSwitch>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-12">
+                            <label for="Name" class="form-label">{{ 'Name' | localize }} <span
+                                    class="text-danger">*</span></label>
+                            <input class="form-control" id="Name" #nameInput="ngModel" type="text" name="Name"
+                                [(ngModel)]="post.name" required />
+                            <validation-messages [formCtrl]="nameInput"></validation-messages>
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-12">
+                            <label for="PostCategory" class="form-label">{{'PostCategory' | localize}} <span
+                                    class="text-danger">*</span></label>
+                            <p-autoComplete [(ngModel)]="selectedPostCategory" id="PostCategory"
+                                [suggestions]="filteredPostCategories" (completeMethod)="filterPostCategories($event)"
+                                [field]="selectedItemDisplay" placeholder="{{'PostCategories' | localize}}"
+                                [minLength]="1" name="PostCategory" inputStyleClass="form-control" styleClass="w-100">
+                                <ng-template let-postCategory pTemplate="item">
+                                    <div class="flex align-items-center gap-2">
+                                        <div>{{ postCategory.code }} - {{postCategory.name}}</div>
+                                    </div>
+                                </ng-template>
+                            </p-autoComplete>
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-12">
+                            <label class="form-label">{{ 'Slug' | localize }} <span class="text-danger">*</span></label>
+                            <div class="p-inputgroup">
+                                <span class="p-inputgroup-addon">
+                                    /post/
+                                </span>
+                                <input pInputText class="form-control" id="Slug" #slugInput="ngModel" type="text"
+                                    name="Slug" [(ngModel)]="post.slug" required />
+                            </div>
+                            <validation-messages [formCtrl]="slugInput"></validation-messages>
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-12">
+                            <label class="form-label">{{ 'Summary' | localize }} </label>
+                            <textarea pInputTextarea class="form-control" id="Summary" name="Summary" rows="3" cols="30"
+                                [(ngModel)]="post.summary"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-12">
+                            <label class="form-label">{{ 'Content' | localize }} </label>
+                            <p-editor [(ngModel)]="post.content" name="Content" id="Content"
+                                [style]="{ height: '300px' }"></p-editor>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-light-primary fw-bold" (click)="close()">
+                        {{ 'Cancel' | localize }}
+                    </button>
+                    <button type="submit" class="btn btn-primary fw-bold" [disabled]="!postForm.form.valid"
+                        [buttonBusy]="saving" [busyText]="l('SavingWithThreeDot')">
+                        <i class="fa fa-save"></i>
+                        <span>{{ 'Save' | localize }}</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>

@@ -114,5 +114,10 @@
         public const string PostCategory_Create = "CCB.PostCategory.Create";
         public const string PostCategory_Edit = "CCB.PostCategory.Edit";
         public const string PostCategory_Delete = "CCB.PostCategory.Delete";
+        
+        public const string Post = "CCB.Post";
+        public const string Post_Create = "CCB.Post.Create";
+        public const string Post_Edit = "CCB.Post.Edit";
+        public const string Post_Delete = "CCB.Post.Delete";
     }
 }

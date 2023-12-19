@@ -131,6 +131,11 @@ namespace Zero.Authorization
             postCategory.CreateChildPermission(CCBPermissions.PostCategory_Create, L("Create"));
             postCategory.CreateChildPermission(CCBPermissions.PostCategory_Edit, L("Edit"));
             postCategory.CreateChildPermission(CCBPermissions.PostCategory_Delete, L("Delete"));
+            
+            var post = postMenuGroup.CreateChildPermission(CCBPermissions.Post, L("Post"));
+            post.CreateChildPermission(CCBPermissions.Post_Create, L("Create"));
+            post.CreateChildPermission(CCBPermissions.Post_Edit, L("Edit"));
+            post.CreateChildPermission(CCBPermissions.Post_Delete, L("Delete"));
 
             #endregion
         }

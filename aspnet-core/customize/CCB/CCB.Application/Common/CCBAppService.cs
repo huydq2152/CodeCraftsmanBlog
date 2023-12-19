@@ -2,7 +2,7 @@
 using Abp.Linq.Extensions;
 using CCB.Application.Shared.Common;
 using CCB.Application.Shared.Dto.Common;
-using CCB.Application.Shared.Post.PostCategory.Dto;
+using CCB.Application.Shared.PostMenu.PostCategory.Dto;
 using Microsoft.EntityFrameworkCore;
 using Zero;
 

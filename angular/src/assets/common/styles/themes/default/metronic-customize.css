@@ -18,10 +18,6 @@ user-menu {
     left: 13px;
 }
 
-p-autoComplete {
-    padding: 10px;
-}
-
 .menuSearchBarContainer {
     width: calc(100% - 20px);
 }
@@ -72,4 +68,8 @@ body[data-kt-app-toolbar-fixed=true] .app-sidebar-logo {
 }
 .app-content{
     padding-bottom: 0;
+}
+
+.p-inputgroup-addon{
+    background-color: #e9ecef;
 }

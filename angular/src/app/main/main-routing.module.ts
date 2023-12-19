@@ -17,6 +17,10 @@ import { RouterModule } from '@angular/router';
                         loadChildren: () =>
                             import('./post-category/post-category.module').then((m) => m.PostCategoryModule),
                     },
+                    {
+                        path: 'post',
+                        loadChildren: () => import('./post/post.module').then((m) => m.PostModule),
+                    },
                     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
                     { path: '**', redirectTo: 'dashboard' },
                 ],

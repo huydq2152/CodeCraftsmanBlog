@@ -1,52 +1,48 @@
 import { Component, EventEmitter, Injector, Output, ViewChild } from '@angular/core';
+import { SlugHelper } from '@app/shared/common/helper/helper';
 import { AppComponentBase } from '@shared/common/app-component-base';
 import {
     CCBServiceProxy,
-    CreateOrEditPostCategoryDto,
+    CreateOrEditPostDto,
     PostCategoryDto,
-    PostCategoryServiceProxy,
+    PostDto,
+    PostServiceProxy,
 } from '@shared/service-proxies/service-proxies';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { finalize } from 'rxjs';
 
 @Component({
-    selector: 'createOrEditPostCategoryModal',
-    templateUrl: './create-or-edit-post-category-modal.component.html',
+    selector: 'createOrEditPostModal',
+    templateUrl: './create-or-edit-post-modal.component.html',
 })
-export class CreateOrEditPostCategoryModalComponent extends AppComponentBase {
+export class CreateOrEditPostModalComponent extends AppComponentBase {
     @ViewChild('createOrEditModal', { static: true }) modal: ModalDirective;
 
     @Output() modalSave: EventEmitter<any> = new EventEmitter<any>();
 
     active = false;
     saving = false;
-    postCategory: CreateOrEditPostCategoryDto = new CreateOrEditPostCategoryDto();
+    post: CreateOrEditPostDto = new CreateOrEditPostDto();
 
     filteredPostCategories: PostCategoryDto[];
     selectedPostCategory: PostCategoryDto;
 
-    constructor(
-        injector: Injector,
-        private _postCategoryService: PostCategoryServiceProxy,
-        private _ccbAppSerivce: CCBServiceProxy
-    ) {
+    constructor(injector: Injector, private _postService: PostServiceProxy, private _ccbAppSerivce: CCBServiceProxy) {
         super(injector);
     }
 
-    show(postCategory?: CreateOrEditPostCategoryDto): void {
+    show(post?: CreateOrEditPostDto): void {
         this.active = true;
-        if (postCategory === undefined || postCategory.id === undefined || postCategory.id <= 0) {
-            this.postCategory = new CreateOrEditPostCategoryDto();
+        if (post === undefined || post.id === undefined || post.id <= 0) {
+            this.post = new CreateOrEditPostDto();
             this.modal.show();
         } else {
-            this._postCategoryService.getPostCategoryForEdit(postCategory.id).subscribe((postCategoryResult) => {
-                this.postCategory = postCategoryResult.postCategory;
-
+            this._postService.getPostForEdit(post.id).subscribe((postResult) => {
+                this.post = postResult.post;
                 this.selectedPostCategory = new PostCategoryDto();
-                this.selectedPostCategory.id = this.postCategory.parentId;
-                this.selectedPostCategory.code = this.postCategory.parentCode;
-                this.selectedPostCategory.name = this.postCategory.parentName;
-
+                this.selectedPostCategory.id = this.post.postCategoryId;
+                this.selectedPostCategory.code = this.post.postCategoryCode;
+                this.selectedPostCategory.name = this.post.postCategoryName;
                 this.modal.show();
             });
         }
@@ -57,13 +53,13 @@ export class CreateOrEditPostCategoryModalComponent extends AppComponentBase {
     }
 
     save(): void {
-        let input = this.postCategory;
+        let input = this.post;
         if (this.selectedPostCategory != undefined) {
-            input.parentId = this.selectedPostCategory.id;
+            input.postCategoryId = this.selectedPostCategory.id;
         }
 
         this.saving = true;
-        this._postCategoryService
+        this._postService
             .createOrEdit(input)
             .pipe(
                 finalize(() => {
@@ -90,5 +86,9 @@ export class CreateOrEditPostCategoryModalComponent extends AppComponentBase {
 
     public selectedItemDisplay(postCategory: PostCategoryDto): string {
         return `${postCategory.code} - ${postCategory.name}`;
+    }
+
+    updateSlug() {
+        this.post.slug = SlugHelper.generateSlug(this.post.code);
     }
 }

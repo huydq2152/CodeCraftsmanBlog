@@ -12,6 +12,13 @@
         <text name="PostCategoryDeleteWarningMessage">Xác nhận xóa loại bài viết</text>
         <text name="PostCategoryParent">Loại bài viết cha</text>
 
+        <text name="Post">Bài viết</text>
+        <text name="Posts">Bài viết</text>
+        <text name="PostsHeaderInfo">Danh mục bài viết</text>
+        <text name="PostDeleteWarningMessage">Xác nhận xóa bài viết</text>
+        <text name="Summary">Tóm tắt</text>
+        <text name="Content">Nội dung</text>
+
         <!--  Default  -->
         <text name="HomePage">Trang chủ</text>
         <text name="AboutUs">Về chúng tôi</text>

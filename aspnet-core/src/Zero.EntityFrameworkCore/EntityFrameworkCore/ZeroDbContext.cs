@@ -42,6 +42,8 @@ namespace Zero.EntityFrameworkCore
         #region CCB
 
         public virtual DbSet<PostCategory> PostCategories { get; set; }
+        
+        public virtual DbSet<Post> Posts { get; set; }
 
         #endregion
 

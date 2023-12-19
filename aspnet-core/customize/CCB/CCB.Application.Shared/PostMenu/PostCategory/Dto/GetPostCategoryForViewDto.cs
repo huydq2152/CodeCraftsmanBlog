@@ -1,4 +1,4 @@
-﻿namespace CCB.Application.Shared.Post.PostCategory.Dto;
+﻿namespace CCB.Application.Shared.PostMenu.PostCategory.Dto;
 
 public class GetPostCategoryForViewDto
 {

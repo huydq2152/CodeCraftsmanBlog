@@ -8,7 +8,7 @@
                     <h4 class="modal-title">
                         <span *ngIf="postCategory.id">{{ 'Edit' | localize }}: {{ postCategory.code
                             }} - {{postCategory.name}}</span>
-                        <span *ngIf="!postCategory.id">{{ 'CreatePostCategory' | localize }}</span>
+                        <span *ngIf="!postCategory.id">{{ 'Create' | localize }}</span>
                     </h4>
                     <button type="button" class="btn-close" (click)="close()" [attr.aria-label]="l('Close')"
                         [disabled]="saving"></button>
@@ -16,13 +16,14 @@
                 <div class="modal-body">
                     <div class="row mb-5">
                         <div class="col-10">
-                            <label class="form-label">{{ 'Code' | localize }} <span class="text-danger">*</span></label>
+                            <label for="Code" class="form-label">{{ 'Code' | localize }} <span
+                                    class="text-danger">*</span></label>
                             <input class="form-control" id="Code" #codeInput="ngModel" type="text" name="Code"
                                 [(ngModel)]="postCategory.code" required />
                             <validation-messages [formCtrl]="codeInput"></validation-messages>
                         </div>
                         <div class="col-2">
-                            <label class="form-label">{{ 'IsActive' | localize }} <span
+                            <label for="IsActive" class="form-label">{{ 'IsActive' | localize }} <span
                                     class="text-danger">*</span></label>
                             <div class="d-flex align-items-center">
                                 <p-inputSwitch id="IsActive" [(ngModel)]="postCategory.isActive"
@@ -32,7 +33,8 @@
                     </div>
                     <div class="row mb-5">
                         <div class="col-12">
-                            <label class="form-label">{{ 'Name' | localize }} <span class="text-danger">*</span></label>
+                            <label for="Name" class="form-label">{{ 'Name' | localize }} <span
+                                    class="text-danger">*</span></label>
                             <input class="form-control" id="Name" #nameInput="ngModel" type="text" name="Name"
                                 [(ngModel)]="postCategory.name" required />
                             <validation-messages [formCtrl]="nameInput"></validation-messages>

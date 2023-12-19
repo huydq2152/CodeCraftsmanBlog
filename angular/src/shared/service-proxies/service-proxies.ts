@@ -9379,6 +9379,254 @@ export class PermissionServiceProxy {
 }
 
 @Injectable()
+export class PostServiceProxy {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    /**
+     * @param filter (optional) 
+     * @param isActive (optional) 
+     * @param sorting (optional) 
+     * @param skipCount (optional) 
+     * @param maxResultCount (optional) 
+     * @return Success
+     */
+    getAll(filter: string | undefined, isActive: boolean | undefined, sorting: string | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<PagedResultDtoOfGetPostForViewDto> {
+        let url_ = this.baseUrl + "/api/services/app/Post/GetAll?";
+        if (filter === null)
+            throw new Error("The parameter 'filter' cannot be null.");
+        else if (filter !== undefined)
+            url_ += "Filter=" + encodeURIComponent("" + filter) + "&";
+        if (isActive === null)
+            throw new Error("The parameter 'isActive' cannot be null.");
+        else if (isActive !== undefined)
+            url_ += "IsActive=" + encodeURIComponent("" + isActive) + "&";
+        if (sorting === null)
+            throw new Error("The parameter 'sorting' cannot be null.");
+        else if (sorting !== undefined)
+            url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&";
+        if (skipCount === null)
+            throw new Error("The parameter 'skipCount' cannot be null.");
+        else if (skipCount !== undefined)
+            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&";
+        if (maxResultCount === null)
+            throw new Error("The parameter 'maxResultCount' cannot be null.");
+        else if (maxResultCount !== undefined)
+            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAll(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAll(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<PagedResultDtoOfGetPostForViewDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<PagedResultDtoOfGetPostForViewDto>;
+        }));
+    }
+
+    protected processGetAll(response: HttpResponseBase): Observable<PagedResultDtoOfGetPostForViewDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = PagedResultDtoOfGetPostForViewDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param id (optional) 
+     * @return Success
+     */
+    getPostForEdit(id: number | undefined): Observable<GetPostForEditOutput> {
+        let url_ = this.baseUrl + "/api/services/app/Post/GetPostForEdit?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetPostForEdit(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetPostForEdit(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<GetPostForEditOutput>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<GetPostForEditOutput>;
+        }));
+    }
+
+    protected processGetPostForEdit(response: HttpResponseBase): Observable<GetPostForEditOutput> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = GetPostForEditOutput.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    createOrEdit(body: CreateOrEditPostDto | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Post/CreateOrEdit";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreateOrEdit(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreateOrEdit(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processCreateOrEdit(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param id (optional) 
+     * @return Success
+     */
+    delete(id: number | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Post/Delete?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDelete(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDelete(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processDelete(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
+@Injectable()
 export class PostCategoryServiceProxy {
     private http: HttpClient;
     private baseUrl: string;
@@ -17500,6 +17748,118 @@ export interface ICreateOrEditPostCategoryDto {
     id: number | undefined;
 }
 
+export class CreateOrEditPostDto implements ICreateOrEditPostDto {
+    tenantId!: number | undefined;
+    postCategoryId!: number;
+    postCategoryCode!: string | undefined;
+    postCategoryName!: string | undefined;
+    summary!: string | undefined;
+    content!: string | undefined;
+    slug!: string | undefined;
+    url!: string | undefined;
+    code!: string;
+    name!: string;
+    note!: string | undefined;
+    isActive!: boolean;
+    isDeleted!: boolean;
+    deleterUserId!: number | undefined;
+    deletionTime!: DateTime | undefined;
+    lastModificationTime!: DateTime | undefined;
+    lastModifierUserId!: number | undefined;
+    creationTime!: DateTime;
+    creatorUserId!: number | undefined;
+    id!: number | undefined;
+
+    constructor(data?: ICreateOrEditPostDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.tenantId = _data["tenantId"];
+            this.postCategoryId = _data["postCategoryId"];
+            this.postCategoryCode = _data["postCategoryCode"];
+            this.postCategoryName = _data["postCategoryName"];
+            this.summary = _data["summary"];
+            this.content = _data["content"];
+            this.slug = _data["slug"];
+            this.url = _data["url"];
+            this.code = _data["code"];
+            this.name = _data["name"];
+            this.note = _data["note"];
+            this.isActive = _data["isActive"];
+            this.isDeleted = _data["isDeleted"];
+            this.deleterUserId = _data["deleterUserId"];
+            this.deletionTime = _data["deletionTime"] ? DateTime.fromISO(_data["deletionTime"].toString()) : <any>undefined;
+            this.lastModificationTime = _data["lastModificationTime"] ? DateTime.fromISO(_data["lastModificationTime"].toString()) : <any>undefined;
+            this.lastModifierUserId = _data["lastModifierUserId"];
+            this.creationTime = _data["creationTime"] ? DateTime.fromISO(_data["creationTime"].toString()) : <any>undefined;
+            this.creatorUserId = _data["creatorUserId"];
+            this.id = _data["id"];
+        }
+    }
+
+    static fromJS(data: any): CreateOrEditPostDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateOrEditPostDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["tenantId"] = this.tenantId;
+        data["postCategoryId"] = this.postCategoryId;
+        data["postCategoryCode"] = this.postCategoryCode;
+        data["postCategoryName"] = this.postCategoryName;
+        data["summary"] = this.summary;
+        data["content"] = this.content;
+        data["slug"] = this.slug;
+        data["url"] = this.url;
+        data["code"] = this.code;
+        data["name"] = this.name;
+        data["note"] = this.note;
+        data["isActive"] = this.isActive;
+        data["isDeleted"] = this.isDeleted;
+        data["deleterUserId"] = this.deleterUserId;
+        data["deletionTime"] = this.deletionTime ? this.deletionTime.toString() : <any>undefined;
+        data["lastModificationTime"] = this.lastModificationTime ? this.lastModificationTime.toString() : <any>undefined;
+        data["lastModifierUserId"] = this.lastModifierUserId;
+        data["creationTime"] = this.creationTime ? this.creationTime.toString() : <any>undefined;
+        data["creatorUserId"] = this.creatorUserId;
+        data["id"] = this.id;
+        return data;
+    }
+}
+
+export interface ICreateOrEditPostDto {
+    tenantId: number | undefined;
+    postCategoryId: number;
+    postCategoryCode: string | undefined;
+    postCategoryName: string | undefined;
+    summary: string | undefined;
+    content: string | undefined;
+    slug: string | undefined;
+    url: string | undefined;
+    code: string;
+    name: string;
+    note: string | undefined;
+    isActive: boolean;
+    isDeleted: boolean;
+    deleterUserId: number | undefined;
+    deletionTime: DateTime | undefined;
+    lastModificationTime: DateTime | undefined;
+    lastModifierUserId: number | undefined;
+    creationTime: DateTime;
+    creatorUserId: number | undefined;
+    id: number | undefined;
+}
+
 export class CreateOrUpdateLanguageInput implements ICreateOrUpdateLanguageInput {
     language!: ApplicationLanguageEditDto;
 
@@ -21533,6 +21893,78 @@ export interface IGetPostCategoryForViewDto {
     postCategory: PostCategoryDto;
 }
 
+export class GetPostForEditOutput implements IGetPostForEditOutput {
+    post!: CreateOrEditPostDto;
+
+    constructor(data?: IGetPostForEditOutput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.post = _data["post"] ? CreateOrEditPostDto.fromJS(_data["post"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): GetPostForEditOutput {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetPostForEditOutput();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["post"] = this.post ? this.post.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IGetPostForEditOutput {
+    post: CreateOrEditPostDto;
+}
+
+export class GetPostForViewDto implements IGetPostForViewDto {
+    post!: PostDto;
+
+    constructor(data?: IGetPostForViewDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.post = _data["post"] ? PostDto.fromJS(_data["post"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): GetPostForViewDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetPostForViewDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["post"] = this.post ? this.post.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IGetPostForViewDto {
+    post: PostDto;
+}
+
 export class GetProfilePictureOutput implements IGetProfilePictureOutput {
     profilePicture!: string | undefined;
 
@@ -25348,6 +25780,54 @@ export interface IPagedResultDtoOfGetPostCategoryForViewDto {
     items: GetPostCategoryForViewDto[] | undefined;
 }
 
+export class PagedResultDtoOfGetPostForViewDto implements IPagedResultDtoOfGetPostForViewDto {
+    totalCount!: number;
+    items!: GetPostForViewDto[] | undefined;
+
+    constructor(data?: IPagedResultDtoOfGetPostForViewDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.totalCount = _data["totalCount"];
+            if (Array.isArray(_data["items"])) {
+                this.items = [] as any;
+                for (let item of _data["items"])
+                    this.items!.push(GetPostForViewDto.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): PagedResultDtoOfGetPostForViewDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new PagedResultDtoOfGetPostForViewDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["totalCount"] = this.totalCount;
+        if (Array.isArray(this.items)) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IPagedResultDtoOfGetPostForViewDto {
+    totalCount: number;
+    items: GetPostForViewDto[] | undefined;
+}
+
 export class PagedResultDtoOfLanguageTextListDto implements IPagedResultDtoOfLanguageTextListDto {
     totalCount!: number;
     items!: LanguageTextListDto[] | undefined;
@@ -26205,6 +26685,118 @@ export interface IPostCategoryDto {
     parentId: number | undefined;
     parentCode: string | undefined;
     parentName: string | undefined;
+    code: string;
+    name: string;
+    note: string | undefined;
+    isActive: boolean;
+    isDeleted: boolean;
+    deleterUserId: number | undefined;
+    deletionTime: DateTime | undefined;
+    lastModificationTime: DateTime | undefined;
+    lastModifierUserId: number | undefined;
+    creationTime: DateTime;
+    creatorUserId: number | undefined;
+    id: number;
+}
+
+export class PostDto implements IPostDto {
+    tenantId!: number | undefined;
+    postCategoryId!: number;
+    postCategoryCode!: string | undefined;
+    postCategoryName!: string | undefined;
+    summary!: string | undefined;
+    content!: string | undefined;
+    slug!: string | undefined;
+    url!: string | undefined;
+    code!: string;
+    name!: string;
+    note!: string | undefined;
+    isActive!: boolean;
+    isDeleted!: boolean;
+    deleterUserId!: number | undefined;
+    deletionTime!: DateTime | undefined;
+    lastModificationTime!: DateTime | undefined;
+    lastModifierUserId!: number | undefined;
+    creationTime!: DateTime;
+    creatorUserId!: number | undefined;
+    id!: number;
+
+    constructor(data?: IPostDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.tenantId = _data["tenantId"];
+            this.postCategoryId = _data["postCategoryId"];
+            this.postCategoryCode = _data["postCategoryCode"];
+            this.postCategoryName = _data["postCategoryName"];
+            this.summary = _data["summary"];
+            this.content = _data["content"];
+            this.slug = _data["slug"];
+            this.url = _data["url"];
+            this.code = _data["code"];
+            this.name = _data["name"];
+            this.note = _data["note"];
+            this.isActive = _data["isActive"];
+            this.isDeleted = _data["isDeleted"];
+            this.deleterUserId = _data["deleterUserId"];
+            this.deletionTime = _data["deletionTime"] ? DateTime.fromISO(_data["deletionTime"].toString()) : <any>undefined;
+            this.lastModificationTime = _data["lastModificationTime"] ? DateTime.fromISO(_data["lastModificationTime"].toString()) : <any>undefined;
+            this.lastModifierUserId = _data["lastModifierUserId"];
+            this.creationTime = _data["creationTime"] ? DateTime.fromISO(_data["creationTime"].toString()) : <any>undefined;
+            this.creatorUserId = _data["creatorUserId"];
+            this.id = _data["id"];
+        }
+    }
+
+    static fromJS(data: any): PostDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new PostDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["tenantId"] = this.tenantId;
+        data["postCategoryId"] = this.postCategoryId;
+        data["postCategoryCode"] = this.postCategoryCode;
+        data["postCategoryName"] = this.postCategoryName;
+        data["summary"] = this.summary;
+        data["content"] = this.content;
+        data["slug"] = this.slug;
+        data["url"] = this.url;
+        data["code"] = this.code;
+        data["name"] = this.name;
+        data["note"] = this.note;
+        data["isActive"] = this.isActive;
+        data["isDeleted"] = this.isDeleted;
+        data["deleterUserId"] = this.deleterUserId;
+        data["deletionTime"] = this.deletionTime ? this.deletionTime.toString() : <any>undefined;
+        data["lastModificationTime"] = this.lastModificationTime ? this.lastModificationTime.toString() : <any>undefined;
+        data["lastModifierUserId"] = this.lastModifierUserId;
+        data["creationTime"] = this.creationTime ? this.creationTime.toString() : <any>undefined;
+        data["creatorUserId"] = this.creatorUserId;
+        data["id"] = this.id;
+        return data;
+    }
+}
+
+export interface IPostDto {
+    tenantId: number | undefined;
+    postCategoryId: number;
+    postCategoryCode: string | undefined;
+    postCategoryName: string | undefined;
+    summary: string | undefined;
+    content: string | undefined;
+    slug: string | undefined;
+    url: string | undefined;
     code: string;
     name: string;
     note: string | undefined;

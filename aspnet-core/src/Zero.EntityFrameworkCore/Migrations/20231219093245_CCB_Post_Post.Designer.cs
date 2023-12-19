@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Zero.EntityFrameworkCore;
 
@@ -11,9 +12,11 @@ using Zero.EntityFrameworkCore;
 namespace Zero.Migrations
 {
     [DbContext(typeof(ZeroDbContext))]
-    partial class ZeroDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231219093245_CCB_Post_Post")]
+    partial class CCB_Post_Post
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
