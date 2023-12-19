@@ -1,8 +1,8 @@
 ﻿using Zero.Customize.BaseDto;
 
-namespace CCB.Application.Shared.Dto.PostCategory;
+namespace CCB.Application.Shared.Post.PostCategory.Dto;
 
-public class CreateOrEditPostCategoryDto: SimpleFullAuditedCreateOrEditEntityDto
+public class PostCategoryDto: SimpleFullAuditedEntityDto
 {
     public int? TenantId { get; set; }
     public int? ParentId { get; set; }

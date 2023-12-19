@@ -43,7 +43,7 @@
                                         <p-sortIcon field="name"></p-sortIcon>
                                     </th>
                                     <th style="min-width: 150px" pSortableColumn="parentCode">
-                                        {{ 'ParentCode' | localize }}
+                                        {{ 'PostCategoryParent' | localize }}
                                         <p-sortIcon field="parentCode"></p-sortIcon>
                                     </th>
                                     <th style="min-width: 100px" pSortableColumn="isActive">
@@ -95,9 +95,12 @@
                                         <span class="p-column-title">{{ 'Name' | localize }}</span>
                                         {{ record.postCategory.name }}
                                     </td>
-                                    <td style="min-width: 150px">
+                                    <td *ngIf="record.postCategory.parentCode" style="min-width: 150px">
                                         <span class="p-column-title">{{ 'ParentCode' | localize }}</span>
-                                        {{ record.postCategory.parentCode }}
+                                        {{ record.postCategory.parentCode }} - {{ record.postCategory.parentName }}
+                                    </td>
+                                    <td *ngIf="!record.postCategory.parentCode" style="min-width: 150px">
+                                        <span class="p-column-title">{{ 'ParentCode' | localize }}</span>
                                     </td>
                                     <td style="min-width: 100px">
                                         <span class="p-column-title">{{ 'Active' | localize }}</span>

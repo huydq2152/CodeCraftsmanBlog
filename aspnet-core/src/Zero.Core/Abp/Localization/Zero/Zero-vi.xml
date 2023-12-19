@@ -10,6 +10,7 @@
         <text name="PostCategories">Loại bài viết</text>
         <text name="PostCategoriesHeaderInfo">Danh mục loại bài viết</text>
         <text name="PostCategoryDeleteWarningMessage">Xác nhận xóa loại bài viết</text>
+        <text name="PostCategoryParent">Loại bài viết cha</text>
 
         <!--  Default  -->
         <text name="HomePage">Trang chủ</text>

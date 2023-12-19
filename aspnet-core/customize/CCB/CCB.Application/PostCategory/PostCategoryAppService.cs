@@ -4,20 +4,20 @@ using Abp.Authorization;
 using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
 using Abp.UI;
-using CCB.Application.Shared.Dto.PostCategory;
-using CCB.Application.Shared.Interfaces;
+using CCB.Application.Shared.Post.PostCategory;
+using CCB.Application.Shared.Post.PostCategory.Dto;
 using Microsoft.EntityFrameworkCore;
 using Zero;
 using Zero.Authorization;
 
-namespace CCB.Application.Service.PostCategory;
+namespace CCB.Application.PostCategory;
 
 [AbpAuthorize(CCBPermissions.PostCategory)]
 public class PostCategoryAppService : ZeroAppServiceBase, IPostCategoryAppService
 {
-    private readonly IRepository<Core.PostCategory.PostCategory> _postCategoryRepository;
+    private readonly IRepository<Core.Post.PostCategory> _postCategoryRepository;
 
-    public PostCategoryAppService(IRepository<Core.PostCategory.PostCategory> postCategoryRepository)
+    public PostCategoryAppService(IRepository<Core.Post.PostCategory> postCategoryRepository)
     {
         _postCategoryRepository = postCategoryRepository;
     }
@@ -123,7 +123,7 @@ public class PostCategoryAppService : ZeroAppServiceBase, IPostCategoryAppServic
     [AbpAuthorize(CCBPermissions.PostCategory_Create)]
     private async Task Create(CreateOrEditPostCategoryDto input)
     {
-        var obj = ObjectMapper.Map<Core.PostCategory.PostCategory>(input);
+        var obj = ObjectMapper.Map<Core.Post.PostCategory>(input);
         obj.TenantId = AbpSession.TenantId;
         await _postCategoryRepository.InsertAsync(obj);
     }

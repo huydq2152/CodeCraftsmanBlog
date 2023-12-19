@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using Abp.Domain.Entities;
-using Abp.Domain.Entities.Auditing;
 using Zero.Customize.Base;
 
-namespace CCB.Core.PostCategory;
+namespace CCB.Core.Post;
 
 [Table("CCB_Post_Category")]
 public class PostCategory : SimpleFullAuditedEntity, IMayHaveTenant

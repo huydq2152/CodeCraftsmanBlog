@@ -1,5 +1,5 @@
 ﻿using Abp.Zero.EntityFrameworkCore;
-using CCB.Core.PostCategory;
+using CCB.Core.Post;
 using Microsoft.EntityFrameworkCore;
 using Zero.Authorization.Delegation;
 using Zero.Authorization.Roles;

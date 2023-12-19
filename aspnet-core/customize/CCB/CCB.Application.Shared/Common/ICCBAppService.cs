@@ -1,7 +1,7 @@
 ﻿using CCB.Application.Shared.Dto.Common;
-using CCB.Application.Shared.Dto.PostCategory;
+using CCB.Application.Shared.Post.PostCategory.Dto;
 
-namespace CCB.Application.Shared.Interfaces.Common;
+namespace CCB.Application.Shared.Common;
 
 public interface ICCBAppService
 {

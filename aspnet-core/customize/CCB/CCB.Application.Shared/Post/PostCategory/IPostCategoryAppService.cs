@@ -1,8 +1,8 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
-using CCB.Application.Shared.Dto.PostCategory;
+using CCB.Application.Shared.Post.PostCategory.Dto;
 
-namespace CCB.Application.Shared.Interfaces;
+namespace CCB.Application.Shared.Post.PostCategory;
 
 public interface IPostCategoryAppService: IApplicationService
 {

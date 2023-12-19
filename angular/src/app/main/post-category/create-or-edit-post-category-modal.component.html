@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="row mb-5">
-                        <label for="Parent" class="col-lg-12 form-label">{{'PostCategory' | localize}}</label>
+                        <label for="Parent" class="col-lg-12 form-label">{{'PostCategoryParent' | localize}}</label>
                         <p-autoComplete [(ngModel)]="selectedPostCategory" id="Parent"
                             [suggestions]="filteredPostCategories" (completeMethod)="filterPostCategories($event)"
                             [field]="selectedItemDisplay" placeholder="{{'PostCategories' | localize}}" [minLength]="1"

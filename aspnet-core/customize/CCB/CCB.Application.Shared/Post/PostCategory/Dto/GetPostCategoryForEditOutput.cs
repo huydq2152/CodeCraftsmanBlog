@@ -1,4 +1,4 @@
-﻿namespace CCB.Application.Shared.Dto.PostCategory;
+﻿namespace CCB.Application.Shared.Post.PostCategory.Dto;
 
 public class GetPostCategoryForEditOutput
 {

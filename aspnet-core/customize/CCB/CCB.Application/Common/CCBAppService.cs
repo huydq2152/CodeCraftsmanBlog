@@ -1,18 +1,18 @@
 ﻿using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
+using CCB.Application.Shared.Common;
 using CCB.Application.Shared.Dto.Common;
-using CCB.Application.Shared.Dto.PostCategory;
-using CCB.Application.Shared.Interfaces.Common;
+using CCB.Application.Shared.Post.PostCategory.Dto;
 using Microsoft.EntityFrameworkCore;
 using Zero;
 
-namespace CCB.Application.Service.Common;
+namespace CCB.Application.Common;
 
 public class CCBAppService : ZeroAppServiceBase, ICCBAppService
 {
-    private readonly IRepository<Core.PostCategory.PostCategory> _postCategoryRepository;
+    private readonly IRepository<Core.Post.PostCategory> _postCategoryRepository;
 
-    public CCBAppService(IRepository<Core.PostCategory.PostCategory> postCategoryRepository)
+    public CCBAppService(IRepository<Core.Post.PostCategory> postCategoryRepository)
     {
         _postCategoryRepository = postCategoryRepository;
     }
