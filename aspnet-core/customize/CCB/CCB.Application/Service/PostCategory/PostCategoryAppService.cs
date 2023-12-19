@@ -28,7 +28,7 @@ public class PostCategoryAppService : ZeroAppServiceBase, IPostCategoryAppServic
         var id = queryInput.Id;
 
         var query = from obj in _postCategoryRepository.GetAll()
-                .Where(o => !o.IsDeleted && o.IsActive && o.TenantId == AbpSession.TenantId)
+                .Where(o => !o.IsDeleted && o.TenantId == AbpSession.TenantId)
                 .WhereIf(input != null && !string.IsNullOrWhiteSpace(input.Filter),
                     e => e.Code.Contains(input.Filter) || e.Name.Contains(input.Filter))
                 .WhereIf(input is { IsActive: not null },

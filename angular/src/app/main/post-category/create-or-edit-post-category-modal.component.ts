@@ -1,6 +1,11 @@
 import { Component, EventEmitter, Injector, Output, ViewChild } from '@angular/core';
 import { AppComponentBase } from '@shared/common/app-component-base';
-import { CCBServiceProxy, CreateOrEditPostCategoryDto, NameValueOfString, PostCategoryDto, PostCategoryServiceProxy } from '@shared/service-proxies/service-proxies';
+import {
+    CCBServiceProxy,
+    CreateOrEditPostCategoryDto,
+    PostCategoryDto,
+    PostCategoryServiceProxy,
+} from '@shared/service-proxies/service-proxies';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { finalize } from 'rxjs';
 
@@ -17,9 +22,14 @@ export class CreateOrEditPostCategoryModalComponent extends AppComponentBase {
     saving = false;
     postCategory: CreateOrEditPostCategoryDto = new CreateOrEditPostCategoryDto();
 
-    filteredPostCategories : PostCategoryDto[];
+    filteredPostCategories: PostCategoryDto[];
+    selectedPostCategory: PostCategoryDto;
 
-    constructor(injector: Injector, private _postCategoryService: PostCategoryServiceProxy, private _ccbAppSerivce: CCBServiceProxy) {
+    constructor(
+        injector: Injector,
+        private _postCategoryService: PostCategoryServiceProxy,
+        private _ccbAppSerivce: CCBServiceProxy
+    ) {
         super(injector);
     }
 
@@ -42,6 +52,9 @@ export class CreateOrEditPostCategoryModalComponent extends AppComponentBase {
 
     save(): void {
         let input = this.postCategory;
+        if (this.selectedPostCategory != undefined) {
+            input.parentId = this.selectedPostCategory.id;
+        }
 
         this.saving = true;
         this._postCategoryService
@@ -64,8 +77,12 @@ export class CreateOrEditPostCategoryModalComponent extends AppComponentBase {
     }
 
     filterPostCategories(event): void {
-        this._ccbAppSerivce.getPostCategories(event.query,undefined,undefined).subscribe((postCategories) => {
+        this._ccbAppSerivce.getPostCategories(event.query, undefined, undefined).subscribe((postCategories) => {
             this.filteredPostCategories = postCategories;
         });
+    }
+
+    public selectedItemDisplay(postCategory: PostCategoryDto): string {
+        return postCategory.code + ' ' + postCategory.name;
     }
 }

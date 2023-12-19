@@ -18,9 +18,8 @@ export class PostCategoryComponent extends AppComponentBase implements AfterView
     @ViewChild('dataTable', { static: true }) dataTable: Table;
     @ViewChild('paginator', { static: true }) paginator: Paginator;
 
-    //Filters
     filterText = '';
-
+    
     constructor(injector: Injector, private _postCategoryService: PostCategoryServiceProxy) {
         super(injector);
     }
