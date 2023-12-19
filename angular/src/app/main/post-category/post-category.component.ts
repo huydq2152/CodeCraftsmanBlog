@@ -40,6 +40,7 @@ export class PostCategoryComponent extends AppComponentBase implements AfterView
         this._postCategoryService
             .getAll(
                 this.filterText,
+                undefined,
                 this.primengTableHelper.getSorting(this.dataTable),
                 this.primengTableHelper.getSkipCount(this.paginator, event),
                 this.primengTableHelper.getMaxResultCount(this.paginator, event)
@@ -49,7 +50,7 @@ export class PostCategoryComponent extends AppComponentBase implements AfterView
                 this.primengTableHelper.totalRecordsCount = result.totalCount;
                 this.primengTableHelper.records = result.items;
                 console.log('this.primengTableHelper.records = ', this.primengTableHelper.records);
-                
+
                 this.primengTableHelper.hideLoadingIndicator();
             });
     }

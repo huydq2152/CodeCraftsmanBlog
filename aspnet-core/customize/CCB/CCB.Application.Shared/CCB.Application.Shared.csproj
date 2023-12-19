@@ -15,8 +15,4 @@
       <ProjectReference Include="..\CCB.Core.Shared\CCB.Core.Shared.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Common\" />
-    </ItemGroup>
-
 </Project>

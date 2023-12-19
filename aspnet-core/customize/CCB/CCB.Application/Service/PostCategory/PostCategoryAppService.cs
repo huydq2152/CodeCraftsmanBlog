@@ -29,9 +29,10 @@ public class PostCategoryAppService : ZeroAppServiceBase, IPostCategoryAppServic
 
         var query = from obj in _postCategoryRepository.GetAll()
                 .Where(o => !o.IsDeleted && o.IsActive && o.TenantId == AbpSession.TenantId)
-                .WhereIf(input!= null && !string.IsNullOrWhiteSpace(input.Filter),
-                    e => e.Code.Contains(input.Filter) || e.Name.Contains(input.Filter) ||
-                         e.Note.Contains(input.Filter))
+                .WhereIf(input != null && !string.IsNullOrWhiteSpace(input.Filter),
+                    e => e.Code.Contains(input.Filter) || e.Name.Contains(input.Filter))
+                .WhereIf(input is { IsActive: not null },
+                    e => e.IsActive == input.IsActive)
                 .WhereIf(id.HasValue, e => e.Id == id.Value)
             select new PostCategoryDto
             {
@@ -44,7 +45,7 @@ public class PostCategoryAppService : ZeroAppServiceBase, IPostCategoryAppServic
                 ParentId = obj.ParentId,
                 ParentCode = obj.Parent.Code,
                 ParentName = obj.Parent.Name,
-                
+
                 IsDeleted = obj.IsDeleted,
                 CreatorUserId = obj.CreatorUserId,
                 CreationTime = obj.CreationTime,
@@ -135,10 +136,10 @@ public class PostCategoryAppService : ZeroAppServiceBase, IPostCategoryAppServic
             var obj = await _postCategoryRepository.FirstOrDefaultAsync(o =>
                 o.TenantId == AbpSession.TenantId && o.Id == input.Id);
             if (obj == null) throw new UserFriendlyException(L("Error"), L("EntityNotFound"));
-            
+
             ObjectMapper.Map(input, obj);
             obj.TenantId = AbpSession.TenantId;
-            
+
             await _postCategoryRepository.UpdateAsync(obj);
         }
     }

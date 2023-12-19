@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Injector, Output, ViewChild } from '@angular/core';
 import { AppComponentBase } from '@shared/common/app-component-base';
-import { CreateOrEditPostCategoryDto, PostCategoryServiceProxy } from '@shared/service-proxies/service-proxies';
+import { CCBServiceProxy, CreateOrEditPostCategoryDto, NameValueOfString, PostCategoryDto, PostCategoryServiceProxy } from '@shared/service-proxies/service-proxies';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { finalize } from 'rxjs';
 
@@ -17,7 +17,9 @@ export class CreateOrEditPostCategoryModalComponent extends AppComponentBase {
     saving = false;
     postCategory: CreateOrEditPostCategoryDto = new CreateOrEditPostCategoryDto();
 
-    constructor(injector: Injector, private _postCategoryService: PostCategoryServiceProxy) {
+    filteredPostCategories : PostCategoryDto[];
+
+    constructor(injector: Injector, private _postCategoryService: PostCategoryServiceProxy, private _ccbAppSerivce: CCBServiceProxy) {
         super(injector);
     }
 
@@ -59,5 +61,11 @@ export class CreateOrEditPostCategoryModalComponent extends AppComponentBase {
     close(): void {
         this.active = false;
         this.modal.hide();
+    }
+
+    filterPostCategories(event): void {
+        this._ccbAppSerivce.getPostCategories(event.query,undefined,undefined).subscribe((postCategories) => {
+            this.filteredPostCategories = postCategories;
+        });
     }
 }
