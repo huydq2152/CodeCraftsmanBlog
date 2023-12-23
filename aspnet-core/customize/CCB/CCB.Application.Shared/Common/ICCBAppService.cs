@@ -1,4 +1,4 @@
-﻿using CCB.Application.Shared.Dto.Common;
+﻿using CCB.Application.Shared.Common.Dto.PostCategory;
 using CCB.Application.Shared.PostMenu.PostCategory.Dto;
 
 namespace CCB.Application.Shared.Common;

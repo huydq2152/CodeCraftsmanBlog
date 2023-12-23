@@ -19,7 +19,7 @@ export class PostCategoryComponent extends AppComponentBase implements AfterView
     @ViewChild('paginator', { static: true }) paginator: Paginator;
 
     filterText = '';
-    
+
     constructor(injector: Injector, private _postCategoryService: PostCategoryServiceProxy) {
         super(injector);
     }
@@ -48,7 +48,6 @@ export class PostCategoryComponent extends AppComponentBase implements AfterView
             .subscribe((result) => {
                 this.primengTableHelper.totalRecordsCount = result.totalCount;
                 this.primengTableHelper.records = result.items;
-                console.log('this.primengTableHelper.records = ', this.primengTableHelper.records);
 
                 this.primengTableHelper.hideLoadingIndicator();
             });

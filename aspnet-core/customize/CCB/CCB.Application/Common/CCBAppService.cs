@@ -1,7 +1,7 @@
 ﻿using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
 using CCB.Application.Shared.Common;
-using CCB.Application.Shared.Dto.Common;
+using CCB.Application.Shared.Common.Dto.PostCategory;
 using CCB.Application.Shared.PostMenu.PostCategory.Dto;
 using Microsoft.EntityFrameworkCore;
 using Zero;

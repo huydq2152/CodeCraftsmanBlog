@@ -1,8 +1,8 @@
-﻿namespace CCB.Application.Shared.Dto.Common;
+﻿namespace CCB.Application.Shared.Common.Dto.PostCategory;
 
 public class CommonGetPostCategoryInput
 {
-    public string Filter { get; set; }
+    public string? Filter { get; set; }
     public int? Id { get; set; }
     public bool? IsActive { get; set; }
 }
